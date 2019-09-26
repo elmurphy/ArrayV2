@@ -1,6 +1,9 @@
-﻿Array.prototype.AsV2 = function () {
+Array.prototype.AsV2 = function () {
     return new ArrayV2(this);
 };
+Array.prototype.SpecialGetterFilter = function () {
+    return JSON.parse(JSON.stringify(this));
+}
 
 function getManyNestedObject(obj, keys) {
     let result = {};
@@ -77,23 +80,23 @@ class ArrayV2 {
             }
             catch (ex) { if (Debug) console.info(ex); }
         }
-        return result;
+        return result.SpecialGetterFilter();
     }
     OrderBy(query) {
-        return this.Get().sort(query);
+        return this.Get().sort(query).SpecialGetterFilter();
     }
     OrderByDesc(query) {
-        return this.Get().sort(query).reverse();
+        return OrderBy(query).reverse();
     }
     Select(key) {
         const resultData = [];
         for (const item of this.Get()) resultData.push(getNestedObject(item, key));
-        return { path: key, data: resultData };
+        return { path: key, data: resultData }.SpecialGetterFilter();
     }
     SelectMany(keys) {
         const resultData = [];
         for (const item of this.Get()) resultData.push(getManyNestedObject(item, keys));
-        return resultData;
+        return resultData.SpecialGetterFilter();
     }
     GroupBy(key) {
         let result = {};
@@ -103,7 +106,7 @@ class ArrayV2 {
             else
                 result[item[key]].push(item);
         }
-        return result;
+        return result.SpecialGetterFilter();
     }
 
     /* Set Functions */
@@ -117,8 +120,11 @@ class ArrayV2 {
     OrderByDescSet(query) {
         return this.Set(OrderByDesc(query));
     }
-    SelectSet(obj) {
-        return Set(Select(obj));
+    SelectSet(key) {
+        return Set(Select(key));
+    }
+    SelectManySet(keys) {
+        return Set(SelectMany(keys));
     }
     GroupBySet(key) {
         return Set(this.GroupBy(key));
