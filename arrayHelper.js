@@ -10,17 +10,18 @@ function getManyNestedObject(obj, keys) {
     for (const key of keys) result[key] = getNestedObject(obj, key);
     return result;
 }
-function getNestedObject(obj, keyS) {
-    let keys = keyS.split('.');
-    for (let key of keys) {
+function getNestedObject(obj, keyStr) {
+    const objectKeys = keyStr.split('.');
+    for (const key of objectKeys) {
         if (key in obj) {
-            obj = obj[k];
+            obj = obj[key];
         } else {
             return;
         }
     }
     return o;
 }
+
 function setNestedObject(obj, keys, value) {
     let objectKeys = keys.split('.');
     let objectStructure = [];
