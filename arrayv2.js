@@ -52,8 +52,8 @@ function setNestedObject(obj, keys, value) {
 
 class ArrayV2 {
     /* Class Default */
-    Debug = false;
-    Data = [];
+    //Debug = false;
+    //Data = [];
 
     constructor(arr) {
         this.Data = arr;
@@ -87,7 +87,7 @@ class ArrayV2 {
         return this.Get().sort(query).SpecialGetterFilter();
     }
     OrderByDesc(query) {
-        return OrderBy(query).reverse();
+        return this.OrderBy(query).reverse();
     }
     Select(key) {
         const resultData = [];
@@ -113,21 +113,24 @@ class ArrayV2 {
     /* Set Functions */
 
     WhereSet(query) {
-        return this.Set(Where(query));
+        return this.Set(this.Where(query));
     }
     OrderBySet(query) {
-        return this.Set(OrderBy(query));
+        return this.Set(this.OrderBy(query));
     }
     OrderByDescSet(query) {
-        return this.Set(OrderByDesc(query));
+        return this.Set(this.OrderByDesc(query));
     }
     SelectSet(key) {
-        return Set(Select(key));
+        return Set(this.Select(key));
     }
     SelectManySet(keys) {
-        return Set(SelectMany(keys));
+        return Set(this.SelectMany(keys));
     }
     GroupBySet(key) {
         return Set(this.GroupBy(key));
     }
 }
+
+
+module.exports = ArrayV2;
