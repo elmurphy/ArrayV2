@@ -19,7 +19,7 @@ function getNestedObject(obj, keyStr) {
             return;
         }
     }
-    return o;
+    return obj;
 }
 
 function setNestedObject(obj, keys, value) {
@@ -92,7 +92,7 @@ class ArrayV2 {
     Select(key) {
         const resultData = [];
         for (const item of this.Get()) resultData.push(getNestedObject(item, key));
-        return { path: key, data: resultData }.SpecialGetterFilter();
+        return { path: key, data: resultData.SpecialGetterFilter() };
     }
     SelectMany(keys) {
         const resultData = [];
