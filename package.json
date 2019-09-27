@@ -1,0 +1,33 @@
+{
+  "name": "arrayv2",
+  "version": "0.1.4a",
+  "description": "New type JavaScript array.",
+  "main": "arrayv2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmurphy/ArrayV2.git"
+  },
+  "keywords": [
+    "array",
+    "ef",
+    "entity",
+    "framework",
+    "list",
+    "linq",
+    "lambda",
+    "db",
+    "search",
+    "arr",
+    "helper",
+    "arrhelper"
+  ],
+  "author": "Uğur Canbulat, <ugr.cnblt.404@gmail.com>, https://www.ugurcanbulat.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elmurphy/ArrayV2/issues"
+  },
+  "homepage": "https://github.com/elmurphy/ArrayV2#readme"
+}
