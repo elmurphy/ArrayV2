@@ -1,11 +1,9 @@
 
 .DS_Store
-test/node_modules
-
-test/dist
+test
 .vs
 .git
-
+.gitignore
 # local env files
 .env.local
 .env.*.local
